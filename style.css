@@ -1,0 +1,623 @@
+/* ============================================================
+   VARIÁVEIS GLOBAIS — Edita aqui as cores e fontes do site inteiro
+   ============================================================ */
+:root {
+  --green:      #3a7a52;   /* Verde principal da marca */
+  --green-dark: #2c5e3f;   /* Verde mais escuro (hover, destaque) */
+  --green-light:#e8f4ec;   /* Verde muito claro (fundos suaves) */
+  --black:      #111111;   /* Preto para texto principal */
+  --dark:       #1a1a1a;   /* Fundo escuro (secção contacto) */
+  --gray:       #555555;   /* Texto secundário */
+  --light:      #f5f7f5;   /* Fundo claro alternado */
+  --white:      #ffffff;
+  --radius:     10px;      /* Arredondamento dos cards */
+  --shadow:     0 4px 20px rgba(0,0,0,0.08); /* Sombra suave */
+  --transition: 0.3s ease; /* Velocidade das animações */
+  --font:       'Segoe UI', Arial, sans-serif;
+}
+
+
+/* ============================================================
+   RESET E BASE — Remove estilos padrão do browser
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth; /* Scroll suave ao clicar nos links do menu */
+}
+
+body {
+  font-family: var(--font);
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul { list-style: none; }
+
+img { max-width: 100%; display: block; }
+
+/* Cor de destaque verde — usada nos títulos */
+.highlight { color: var(--green); }
+
+
+/* ============================================================
+   UTILITÁRIOS — Classes reutilizáveis em todo o site
+   ============================================================ */
+
+/* Centraliza e limita largura do conteúdo */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Fundo cinza claro (secções alternadas) */
+.bg-light { background: var(--light); }
+
+/* Fundo escuro (secção de contacto) */
+.bg-dark {
+  background: var(--dark);
+  color: var(--white);
+}
+
+/* Etiqueta pequena verde acima dos títulos */
+.section-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+/* Descrição de texto abaixo dos títulos */
+.section-desc {
+  color: var(--gray);
+  max-width: 640px;
+  margin: 14px auto 0;
+  font-size: 1.05rem;
+}
+
+/* Versão clara da descrição (para fundo escuro) */
+.section-desc.light { color: #aaa; }
+
+/* Grids responsivos */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+}
+
+
+/* ============================================================
+   BOTÕES — Estilos dos botões de chamada à ação
+   ============================================================ */
+
+/* Botão principal verde */
+.btn-primary {
+  display: inline-block;
+  background: var(--green);
+  color: var(--white);
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: background var(--transition);
+}
+.btn-primary:hover { background: var(--green-dark); }
+
+/* Versão maior do botão principal */
+.btn-primary.large {
+  padding: 16px 48px;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+/* Botão secundário (contorno) */
+.btn-secondary {
+  display: inline-block;
+  border: 2px solid var(--white);
+  color: var(--white);
+  padding: 13px 30px;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all var(--transition);
+}
+.btn-secondary:hover {
+  background: var(--white);
+  color: var(--green);
+}
+
+/* Botão do menu de navegação */
+.btn-nav {
+  background: var(--green);
+  color: var(--white) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700;
+  transition: background var(--transition);
+}
+.btn-nav:hover { background: var(--green-dark); }
+
+
+/* ============================================================
+   NAVEGAÇÃO — Barra fixa no topo
+   ============================================================ */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100000000;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo no canto esquerdo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--black);
+}
+.nav-logo i {
+  color: var(--green);
+  font-size: 1.4rem;
+}
+
+/* Links de navegação */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--gray);
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--green); }
+
+/* Botão hambúrguer (só aparece em mobile) */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--black);
+  border-radius: 2px;
+  transition: all var(--transition);
+}
+
+
+/* ============================================================
+   HERO — Secção de entrada (ecrã completo)
+   ============================================================ */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--dark) 55%, var(--green-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 24px 60px;
+}
+
+.hero-content { max-width: 750px; }
+
+.hero-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 18px;
+}
+
+#hero h1 {
+  font-size: clamp(2rem, 5vw, 3.4rem); /* Tamanho responsivo */
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 20px;
+}
+
+.hero-sub {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-bottom: 36px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+
+/* ============================================================
+   SECÇÕES GERAIS — Espaçamento comum
+   ============================================================ */
+section {
+  padding: 90px 0;
+  text-align: center;
+}
+
+section h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+
+/* ============================================================
+   QUEM SOMOS — Cards de estatísticas
+   ============================================================ */
+.cards-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+
+.card-stat {
+  background: var(--green-light);
+  border-radius: var(--radius);
+  padding: 32px 40px;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform var(--transition);
+}
+.card-stat:hover { transform: translateY(-4px); }
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--green);
+}
+.stat-label {
+  font-size: 0.9rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   PROBLEMA — Cards de desafio
+   ============================================================ */
+.problem-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+.problem-card:hover { transform: translateY(-4px); }
+
+.problem-card i {
+  font-size: 1.6rem;
+  color: var(--green);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+.problem-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.problem-card p { color: var(--gray); font-size: 0.9rem; }
+
+
+/* ============================================================
+   SOLUÇÃO — Separador e cards de pilares
+   ============================================================ */
+.solucao-intro { margin-top: 72px; }
+
+.solution-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+.solution-card:hover { transform: translateY(-4px); }
+
+.solution-card i {
+  font-size: 2rem;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.solution-card h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.solution-card p { color: var(--gray); font-size: 0.95rem; }
+
+
+/* ============================================================
+   SERVIÇOS — Cards de serviço
+   ============================================================ */
+.service-card {
+  background: var(--white);
+  border: 2px solid #e8e8e8;
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  text-align: left;
+  transition: all var(--transition);
+}
+.service-card:hover {
+  border-color: var(--green);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+.service-card i {
+  font-size: 1.8rem;
+  color: var(--green);
+  margin-bottom: 16px;
+}
+.service-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.service-card p { color: var(--gray); font-size: 0.95rem; }
+
+/* Card destacado (software de gestão) */
+.service-card.featured {
+  border-color: var(--green);
+  background: var(--green-light);
+}
+
+
+/* ============================================================
+   CASOS DE SUCESSO — Cards de projeto
+   ============================================================ */
+.caso-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 28px;
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition);
+}
+.caso-card:hover { transform: translateY(-4px); }
+
+/* Ícone ou logo do projeto */
+.caso-icon {
+  width: 72px; height: 72px;
+  background: var(--green-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.caso-icon i { font-size: 1.8rem; color: var(--green); }
+
+/* Etiqueta do tipo de projeto */
+.caso-tipo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--green);
+}
+.caso-card h3 {
+  font-size: 1.3rem;
+  margin: 8px 0 12px;
+}
+.caso-card p { color: var(--gray); }
+
+
+/* ============================================================
+   TIMELINE — Processo de trabalho
+   ============================================================ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 680px;
+  margin: 48px auto 0;
+  text-align: left;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  position: relative;
+  padding-bottom: 32px;
+}
+
+/* Linha vertical entre os passos */
+.timeline-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 22px; top: 46px;
+  width: 2px;
+  height: calc(100% - 20px);
+  background: var(--green-light);
+}
+
+/* Número do passo */
+.timeline-num {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green);
+  font-weight: 800;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* Número ativo (passo de desenvolvimento) */
+.timeline-num.active {
+  background: var(--green);
+  color: var(--white);
+}
+
+.timeline-content { padding-top: 8px; }
+.timeline-content h4 { font-weight: 700; margin-bottom: 4px; }
+.timeline-content p { color: var(--gray); font-size: 0.95rem; }
+
+
+/* ============================================================
+   CONTACTO — Secção final escura
+   ============================================================ */
+#contacto h2 { color: var(--white); }
+
+.contact-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+}
+
+.contact-item i {
+  font-size: 1.6rem;
+  color: var(--green);
+  width: 44px;
+  flex-shrink: 0;
+}
+
+.contact-item span {
+  display: block;
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.contact-item a, .contact-item p {
+  color: var(--white);
+  font-weight: 600;
+  font-size: 1rem;
+}
+.contact-item a:hover { color: var(--green); }
+
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+footer {
+  background: #000000;
+  padding: 28px 24px;
+  text-align: center;
+}
+
+.footer-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--white);
+  font-weight: 800;
+  font-size: 1rem;
+}
+.footer-logo i { color: var(--green); }
+
+.footer-copy { color: #555; font-size: 0.85rem; }
+
+
+/* ============================================================
+   RESPONSIVO — Ajustes para ecrãs pequenos (telemóvel/tablet)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* Esconde links do menu e mostra hambúrguer */
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 68px; left: 0; right: 0;
+    background: var(--white);
+    padding: 20px 24px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    gap: 16px;
+  }
+
+  /* Classe adicionada pelo JavaScript ao clicar no hambúrguer */
+  .nav-links.open { display: flex; }
+
+  .hamburger { display: flex; }
+
+  /* Botões do hero em coluna */
+  .hero-btns { flex-direction: column; align-items: center; }
+
+  /* Timeline mais estreita */
+  .timeline { padding: 0 8px; }
+
+  /* Contacto em coluna */
+  .contact-grid { flex-direction: column; align-items: center; }
+}
+/* ============================================================
+   LOGO — Imagem do logótipo horizontal na navegação
+   ============================================================ */
+.nav-logo img,
+#logoprincipal {
+  height: 40px;      /* ajusta este valor conforme o teu logo */
+  width: auto;        /* mantém a proporção original, sem esticar */
+  max-width: none;     /* sobrepõe o max-width: 100% genérico */
+}
